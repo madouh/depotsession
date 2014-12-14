@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Name</th>
       <th>Email</th>
       <th>Image</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @agents.each do |agent| %>
       <tr>
+        <td><%= agent.id %></td>
         <td><%= agent.name %></td>
         <td><%= agent.email %></td>
         <td><%= image_tag(agent.image_url, :width => 80) if agent.image.present? %></td>

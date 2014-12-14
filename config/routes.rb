@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'error/no_found'
+  get 'error/not_found'
 
   get 'error/acess_denied'
 

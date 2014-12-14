@@ -63,7 +63,7 @@ class AgentsController < ApplicationController
 
   private
     def set_agent 
-     @agent = Agent.find(params[:id]) if Agent.find_by_id(params[:id]).present? else  redirect_to error_no_found_path #redirect_to "/"
+     @agent = Agent.find(params[:id]) #if Agent.find_by_id(params[:id]).present? else  redirect_to error_not_found_path #redirect_to "/"
      end
 
     def agent_params

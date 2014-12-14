@@ -1,5 +1,5 @@
 class ErrorController < ApplicationController
-  def no_found
+  def not_found
   end
 
   def acess_denied
