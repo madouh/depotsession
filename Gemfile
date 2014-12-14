@@ -13,6 +13,9 @@ group :development do
 	gem "sqlite3"
 end
 
+gem 'therubyracer'
+ gem 'less-rails'
+ gem 'twitter-bootstrap-rails'
 
 gem 'devise'
 # Use SCSS for stylesheets

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'error/no_found'
+
+  get 'error/acess_denied'
+
+  get 'error/oops'
+
   resources :agents
 
   get 'pichandling/set'

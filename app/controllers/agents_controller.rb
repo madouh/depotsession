@@ -4,20 +4,43 @@ class AgentsController < ApplicationController
   respond_to :html
 
   def index
+    if is_admin?
     @agents = Agent.all
     respond_with(@agents)
+  else
+    redirect_to error_acess_denied_path
+    #redirect_to '/'
+  end
+    
   end
 
   def show
-    respond_with(@agent)
+     if (current_user.email==Agent.find(params[:id]).email )|| is_admin?
+            respond_with(@agent)    
+    else
+      redirect_to error_acess_denied_path
+      #redirect_to '/'
+     end
+    
   end
 
   def new
+    if is_admin?
     @agent = Agent.new
     respond_with(@agent)
+  else
+    redirect_to error_acess_denied_path
+   # redirect_to '/'
+  end
   end
 
   def edit
+    if !(is_admin? )
+    if !(current_user.email==Agent.find_by_id(params[:id]).email )
+      redirect_to error_acess_denied_path
+    #redirect_to '/'
+     end
+   end
   end
 
   def create
@@ -32,14 +55,16 @@ class AgentsController < ApplicationController
   end
 
   def destroy
+    if (current_user.email==Agent.find(params[:id]).email )|| is_admin?
     @agent.destroy
     respond_with(@agent)
+    end
   end
 
   private
-    def set_agent
-      @agent = Agent.find(params[:id])
-    end
+    def set_agent 
+     @agent = Agent.find(params[:id]) if Agent.find_by_id(params[:id]).present? else  redirect_to error_no_found_path #redirect_to "/"
+     end
 
     def agent_params
       params.require(:agent).permit(:name, :email, :image, :country, :city, :street, :birth)

@@ -2,10 +2,16 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_image, only: [:show, :edit, :update, :destroy, :index, :new]
   before_action :authenticate_user!, only: [ :new, :edit, :update, :destroy]
+
+
+
   # GET /products
   # GET /products.json
   def index
+    
+
     @products = Product.all
+  
     #@current_agent=Agent.find_by_email(current_user.email )#where("email = #{current_user.email}")
     # Person.find(:first, :conditions => [ "user_name = ?", user_name])
   end
