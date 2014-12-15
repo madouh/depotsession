@@ -15,7 +15,7 @@ class AgentsController < ApplicationController
   end
 
   def show
-     if (current_user.email==Agent.find(params[:id]).email )|| is_admin?
+     if (current_user.email==Agent.find_by_id(params[:id]).email )|| is_admin?
             respond_with(@agent)    
     else
       redirect_to error_acess_denied_path
@@ -35,7 +35,7 @@ class AgentsController < ApplicationController
   end
 
   def edit
-    if !(is_admin? )
+    #if !(is_admin? )
     if !(current_user.email==Agent.find_by_id(params[:id]).email )
       redirect_to error_acess_denied_path
     #redirect_to '/'
@@ -67,6 +67,6 @@ class AgentsController < ApplicationController
      end
 
     def agent_params
-      params.require(:agent).permit(:name, current_user.email, :image, :country, :city, :street, :birth)
+      params.require(:agent).permit(:name, :email, :image, :country, :city, :street, :birth)
     end
 end
