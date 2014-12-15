@@ -25,7 +25,7 @@ class AgentsController < ApplicationController
   end
 
   def new
-    if is_admin?
+    unless has_profile?
     @agent = Agent.new
     respond_with(@agent)
   else
@@ -67,6 +67,6 @@ class AgentsController < ApplicationController
      end
 
     def agent_params
-      params.require(:agent).permit(:name, :email, :image, :country, :city, :street, :birth)
+      params.require(:agent).permit(:name, current_user.email, :image, :country, :city, :street, :birth)
     end
 end

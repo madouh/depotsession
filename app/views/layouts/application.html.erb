@@ -60,12 +60,14 @@
     <div id="user data">
       <% if user_signed_in? %>
       <%if has_profile? %>
-      <strong><i><%=link_to @current_agent.name, edit_agent_path(@current_agent)  %></i></strong>
+      <strong><i><%=link_to (@current_agent.name).capitalize, edit_agent_path(@current_agent)  %></i></strong>
+      <%else%>
+      <%=link_to "Edit", new_agent_path %>
       <%end%>
   Logged in as <strong><%= current_user.email %></strong><p>
-  <% if !set_image.blank? %>
-<%= image_tag(set_image, :width => 30) if set_image.present? %>
-<%end%>
+  <% unless set_image.blank? %>
+<%= image_tag(set_image, :width => 40) if set_image.present? %>
+<%end%><br>
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% else %>
