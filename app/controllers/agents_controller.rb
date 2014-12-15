@@ -39,7 +39,6 @@ class AgentsController < ApplicationController
     if !(current_user.email==Agent.find_by_id(params[:id]).email )
       redirect_to error_acess_denied_path
     #redirect_to '/'
-     end
    end
   end
 
